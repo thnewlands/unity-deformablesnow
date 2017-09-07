@@ -19,3 +19,9 @@ This specific implimentation is for flat fixed areas! It can be reconfigured to 
 In [That Blooming Feeling](https://totsteam.itch.io/thatbloomingfeeling) I used a similar technique in world space that follows the camera and has the environment responding to the buffer (animating / recoiling / +). It's based off of Naughty Dog's method they use for vehicle damage, foliage interaction, +. They have some good notes on this lower down in this talk! http://advances.realtimerendering.com/other/2016/naughty_dog/index.html 
 
 If this doesn't work on your machine out of the box double check you're using OpenGLCore or DX11+ in your Unity project. Tessellation is only supported on more recent graphics APIs.
+
+Cheers,
+
+Thomas Newlands
+
+@thnewlands
