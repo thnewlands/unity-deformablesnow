@@ -1,4 +1,4 @@
-# unity-deformablesnow
+# Deformable Snow for Unity -- PIGSquad Stream Workshop Repo
 
 Streamed on https://www.twitch.tv/pigsquad !
 
