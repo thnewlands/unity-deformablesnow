@@ -1,5 +1,8 @@
 # unity-deformablesnow
-Repository for online PIGSquad workshop on deformable snow in Unity.
+
+Streamed on https://www.twitch.tv/pigsquad !
+
+![preview](http://i.imgur.com/VytQ4n0.png)
 
 A straightforward technique for rendering deformable snow in limited areas based off of http://www.gdcvault.com/play/1020177/Deformable-Snow-Rendering-in-Batman
 
@@ -16,5 +19,3 @@ This specific implimentation is for flat fixed areas! It can be reconfigured to 
 In [That Blooming Feeling](https://totsteam.itch.io/thatbloomingfeeling) I used a similar technique in world space that follows the camera and has the environment responding to the buffer (animating / recoiling / +). It's based off of Naughty Dog's method they use for vehicle damage, foliage interaction, +. They have some good notes on this lower down in this talk! http://advances.realtimerendering.com/other/2016/naughty_dog/index.html 
 
 If this doesn't work on your machine out of the box double check you're using OpenGLCore or DX11+ in your Unity project. Tessellation is only supported on more recent graphics APIs.
-
-![preview](http://i.imgur.com/VytQ4n0.png)
