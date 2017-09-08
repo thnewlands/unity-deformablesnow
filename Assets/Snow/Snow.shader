@@ -71,7 +71,7 @@
 	void disp(inout appdata v)
 	{
 		//depth texture transformed to fit camera and 
-		float d = (1 - tex2Dlod(_ImprintTex, float4(1 - v.texcoord.x, v.texcoord.y, 0,0)).r) * _Displacement;
+		float d = tex2Dlod(_ImprintTex, float4(1 - v.texcoord.x, v.texcoord.y, 0,0)).r * _Displacement;
 		//displace it all for a more interesting overall surface, inverted so it indents from the top and toned down by half
 		d *= 1 - tex2Dlod(_DispTex, float4(v.texcoord,0,0)) * .5f;
 		//put it all together
@@ -94,7 +94,7 @@
 		half4 c = lerp(
 			tex2D(_MainTex, IN.uv_MainTex) * _TopColor,
 			tex2D(_MainTex2, IN.uv_MainTex) * _BotColor,
-			tex2D(_ImprintTex, float2(1 - IN.uv_MainTex.x, IN.uv_MainTex.y)).r);
+			1 - tex2D(_ImprintTex, float2(1 - IN.uv_MainTex.x, IN.uv_MainTex.y)).r);
 		o.Albedo = c.rgb;
 		o.Specular = .2;
 		o.Gloss = 1.0;

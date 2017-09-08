@@ -1,58 +1,63 @@
-﻿Shader "Unlit/SnowAggregation"
-{
+﻿Shader "Custom/SnowAggregation" {
 	Properties
 	{
-		_MainTex ("Texture", 2D) = "white" {}
-		_Color("Color", color) = (0.003, 0.003, 0.003,0) // 0.003 --> 1/256 rounded
+		_MainTex("Texture", 2D) = "white" {}
+		_Color("Color", color) = (0.1, 0.1, 0.1,0)
+		_Speed("Refresh Speed", float) = 50
 	}
-	SubShader
-	{
-		Tags { "RenderType"="Opaque" }
-		LOD 100
+		SubShader{
+			Tags{ "RenderType" = "Opaque" }
 
-		Pass
-		{
+			Pass{
+
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			
 			#include "UnityCG.cginc"
-
-			struct appdata
-			{
-				float4 vertex : POSITION;
-				float2 uv : TEXCOORD0;
-			};
-
-			struct v2f
-			{
-				float2 uv : TEXCOORD0;
-				UNITY_FOG_COORDS(1)
-				float4 vertex : SV_POSITION;
-			};
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
 			float4 _Color;
-			
-			v2f vert (appdata v)
-			{
+
+			sampler2D _CameraDepthTexture;
+
+			struct v2f {
+				float2 uv : TEXCOORD0;
+				float4 scrPos:TEXCOORD1;
+				float4 pos : SV_POSITION;
+			};
+
+			//Vertex Shader
+			v2f vert(appdata_base v) {
 				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
-				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				o.pos = UnityObjectToClipPos(v.vertex);
+				o.scrPos = ComputeScreenPos(o.pos);
+				o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
+				//for some reason, the y position of the depth texture comes out inverted
 				return o;
 			}
-			
-			fixed4 frag (v2f i) : SV_Target
-			{
-				//take the snow camera's image
+
+			float _Speed;
+
+			//Depth code via: http://williamchyr.com/2013/11/unity-shaders-depth-and-normal-textures/
+
+			//Fragment Shader
+			half4 frag(v2f i) : COLOR{
 				fixed4 mtex = tex2D(_MainTex, i.uv);
-				float col = mtex;
-				//and subtract the height color from it (reducing the seen depth to 0 over time assuming the texture's colors are clamped)
-				col -= _Color;
-				return col;
+				float depthValue = Linear01Depth(tex2Dproj(_CameraDepthTexture, UNITY_PROJ_COORD(i.scrPos)).r);
+				float4 d = float4(depthValue, depthValue, depthValue, depthValue);
+				float4 c = d;
+				if (d.a == 1) { //cut out background depth
+					c = mtex;
+				}
+				//delayed fading
+				if (frac(_Time.x * 50) >= .8) {
+					c += _Color;
+				}
+				return c;
 			}
 			ENDCG
 		}
 	}
+		FallBack "Diffuse"
 }

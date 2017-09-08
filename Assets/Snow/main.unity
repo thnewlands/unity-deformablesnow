@@ -212,8 +212,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 118497875}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17472339, y: -0.36665, z: 1.299}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: -0.17472339, y: -0.36665, z: 0.91}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children:
   - {fileID: 1119257318}
   - {fileID: 773674846}
@@ -529,8 +529,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 435905976}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9, y: 0.39, z: 1.01}
-  m_LocalScale: {x: 0.31143796, y: 0.311438, z: 0.311438}
+  m_LocalPosition: {x: -0.9, y: 0.077, z: 1.01}
+  m_LocalScale: {x: 0.65790415, y: 0.65790415, z: 0.65790415}
   m_Children: []
   m_Father: {fileID: 872367240}
   m_RootOrder: 0
@@ -5014,7 +5014,7 @@ GameObject:
   - component: {fileID: 1476605951}
   - component: {fileID: 1476605950}
   - component: {fileID: 1476605949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Snow Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5081,8 +5081,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1476605948}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.20368}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -5589,7 +5589,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snowPlane: {fileID: 1476605948}
   blitmat: {fileID: 2100000, guid: 6693948b158a550488a5ed3868d8e7f5, type: 2}
-  updateDelay: 0.25
+  white: {fileID: 2100000, guid: 8a923a09ad3657746afcc45486106200, type: 2}
+  updateSpeed: 100
 --- !u!20 &1983942261
 Camera:
   m_ObjectHideFlags: 0
@@ -5606,8 +5607,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0
-  far clip plane: 0.35
+  near clip plane: 0.2
+  far clip plane: 0.6
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -5633,7 +5634,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1983942256}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.025, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

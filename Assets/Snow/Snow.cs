@@ -4,7 +4,8 @@ public class Snow : MonoBehaviour {
 
     public GameObject snowPlane;
     public Material blitmat;
-    public float updateDelay = .05f;
+    public Material white;
+    public float updateSpeed = 100f;
 
     private Camera cam;
 
@@ -16,18 +17,20 @@ public class Snow : MonoBehaviour {
         cam.orthographicSize *= snowPlane.transform.localScale.x; 
     }
 
+    bool backgroundset = false;
+
     //this function is for refreshing the snow levels over time
-    float timer = 0;
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        timer += Time.deltaTime;
-        if(timer >= updateDelay)
+        blitmat.SetFloat("_Speed", updateSpeed);
+
+        if(!backgroundset)
         {
-            Graphics.Blit(source, destination, blitmat);
-            timer = 0;
-        } else
-        {
-            Graphics.Blit(source, destination);
+            Graphics.Blit(source, destination, white);
+            backgroundset = true;
+            return;
         }
+
+        Graphics.Blit(source, destination, blitmat);
     }
 }
