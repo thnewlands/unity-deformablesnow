@@ -23,6 +23,6 @@ If this doesn't work on your machine out of the box double check you're using Op
 
 Cheers,
 
-Thomas Newlands
+Holly Newlands
 
 @thnewlands
